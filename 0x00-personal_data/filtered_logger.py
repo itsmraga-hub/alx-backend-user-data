@@ -5,7 +5,7 @@
 
 import re
 import logging
-import re
+from typing import List
 
 
 class RedactingFormatter(logging.Formatter):
@@ -26,7 +26,8 @@ class RedactingFormatter(logging.Formatter):
                       r'\1=' + self.REDACTION, log_message)
 
 
-def filter_datum(fields, redaction, message, separator):
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
     """
         function called filter_datum that returns the log message
         obfuscated:
