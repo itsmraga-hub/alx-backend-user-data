@@ -9,7 +9,11 @@ from typing import List
 
 
 class RedactingFormatter(logging.Formatter):
-    """ Redacting Formatter class """
+    """
+        Redacting Formatter class
+        Update the class to accept a list of strings fields constructor
+        argument.
+    """
 
     REDACTION = "***"
     FORMAT = "[HOLBERTON] %(name)s %(levelname)s %(asctime)-15s: %(message)s"
