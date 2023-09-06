@@ -31,7 +31,7 @@ def before_request() -> str:
         '/api/v1/status/',
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/'
-        ]):
+    ]):
         return
 
     if auth.authorization_header(request) is None:
@@ -39,6 +39,7 @@ def before_request() -> str:
 
     if auth.current_user(request) is None:
         abort(403)
+
 
 @app.errorhandler(404)
 def not_found(error) -> str:
