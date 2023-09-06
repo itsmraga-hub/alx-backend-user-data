@@ -31,7 +31,7 @@ def before_request() -> str:
         '/api/v1/status/',
         '/api/v1/unauthorized/',
         '/api/v1/forbidden/'
-        ]:
+        ]):
         return
 
     if auth.authorization_header(request) is None:
