@@ -20,8 +20,16 @@ class Auth:
 
         if path is None or excluded_paths is None or not len(excluded_paths):
             return True
+
         if path[-1] != '/':
             path += '/'
+
+        astericks = [stars[:-1]
+                     for stars in excluded_paths if stars[-1] == '*']
+
+        for stars in astericks:
+            if path.startswith(stars):
+                return False
 
         if path in excluded_paths:
             return False
