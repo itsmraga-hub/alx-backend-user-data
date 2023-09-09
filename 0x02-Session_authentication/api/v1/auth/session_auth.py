@@ -6,6 +6,8 @@
 """
 
 from api.v1.auth.auth import Auth
+from flask.globals import session
+from models.user import User
 from typing import Dict
 import uuid
 
