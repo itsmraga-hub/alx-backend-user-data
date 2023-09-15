@@ -20,7 +20,7 @@ def root() -> str:
 
 
 @app.route('/users', methods=['POST'])
-def register_user() -> str:
+def register() -> str:
     """
         Define a users function that implements the POST /users route.
     """
@@ -40,7 +40,7 @@ def register_user() -> str:
 
 
 @app.route('/sessions', methods=['POST'])
-def log_in() -> str:
+def login() -> str:
     """
         Implement a login function to respond to the POST /sessions route.
     """
@@ -60,6 +60,27 @@ def log_in() -> str:
     response.set_cookie("session_id", session_id)
 
     return response
+
+
+@app.route('/sessions', methods=['DELETE'])
+def logout() -> str:
+    """
+        In this task, you will implement a logout function to respond to
+        the DELETE /sessions route.
+    """
+    session_id = request.cookies.get("session_id", None)
+
+    if session_id is None:
+        abort(403)
+
+    user = AUTH.get_user_from_session_id(session_id)
+
+    if user is None:
+        abort(403)
+
+    AUTH.destroy_session(user.id)
+
+    return redirect('/')
 
 
 if __name__ == "__main__":
