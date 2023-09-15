@@ -50,9 +50,9 @@ class DB:
         if not kwargs:
             raise InvalidRequestError
 
-        column_names = User.__table__.columns.keys()
+        columns = User.__table__.columns.keys()
         for key in kwargs.keys():
-            if key not in column_names:
+            if key not in columns:
                 raise InvalidRequestError
 
         user = self._session.query(User).filter_by(**kwargs).first()
@@ -61,3 +61,18 @@ class DB:
             raise NoResultFound
 
         return user
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """
+            
+        """
+        user = self.find_user_by(id=user_id)
+        columns = User.__table__.columns.keys()
+        for key in kwargs.keys():
+            if key not in columns:
+                raise ValueError
+
+        for key, value in kwargs.items():
+            setattr(user, key, value)
+
+        self._session.commit()
