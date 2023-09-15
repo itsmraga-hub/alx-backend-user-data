@@ -65,7 +65,9 @@ class DB:
 
     def update_user(self, user_id: int, **kwargs) -> None:
         """
-            
+            In this task, you will implement the DB.update_user method that
+            takes as argument a required user_id integer and arbitrary
+            keyword arguments, and returns None.
         """
         user = self.find_user_by(id=user_id)
         columns = User.__table__.columns.keys()
